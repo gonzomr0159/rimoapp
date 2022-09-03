@@ -1,14 +1,17 @@
 import React from 'react';
+import { useGoogleSheets } from './gapi';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const data = useGoogleSheets();
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          {JSON.stringify(data)}
         </p>
         <a
           className="App-link"
