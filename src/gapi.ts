@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 
-const clientId = '438973009190-htdb78m4crjasupm36tolspujoma293r.apps.googleusercontent.com';
-
 export const useGoogleSheets = () => {
   const [data, setData] = useState<any>();
   const [isGapiInit, setIsGapiInit] = useState<boolean>(false);
@@ -10,7 +8,7 @@ export const useGoogleSheets = () => {
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
-        clientId,
+        clientId: process.env.REACT_APP_G_CLIENT_ID,
         scope: 'https://www.googleapis.com/auth/spreadsheets',
       }).then(() => setIsGapiInit(true));
     }
