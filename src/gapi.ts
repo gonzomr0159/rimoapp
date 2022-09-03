@@ -22,6 +22,7 @@ export const useGoogleSheets = () => {
 
     const auth = gapi.auth2.getAuthInstance();
     const user = auth.currentUser.get();
+    console.log('user:');
     const access_token = user.getAuthResponse().access_token;
   
     const baseUrl = 'https://sheets.googleapis.com';
@@ -44,4 +45,20 @@ export const useGoogleSheets = () => {
   }, [isGapiInit]);
 
   return data;
+}
+
+export const fetchGoogleSheet = async (access_token: string) => {
+  const baseUrl = 'https://sheets.googleapis.com';
+  const sheetId = '19dJEs33J0J_1dy-gKZ_jznelnSHhzQ7HkzJ3_PfkG78';
+
+  return gapi.client.request({
+    method: 'get',
+    path: `${baseUrl}/v4/spreadsheets/${sheetId}`,
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+    params: {
+      includeGridData: true,
+    }
+  });
 }
