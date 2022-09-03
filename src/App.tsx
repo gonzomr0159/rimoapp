@@ -11,7 +11,6 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {JSON.stringify(process.env.REACT_APP_G_CLIENT_ID)}
           {JSON.stringify(data)}
         </p>
         <a
